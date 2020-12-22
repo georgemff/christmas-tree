@@ -4,8 +4,14 @@
   box-sizing: border-box;
 }
 body {
-  background: rgb(12,20,69);
-background: linear-gradient(90deg, rgba(12,20,69,1) 0%, rgba(56,40,92,1) 35%, rgba(76,64,142,1) 100%);
+  background: rgb(12, 20, 69);
+  background: linear-gradient(
+    90deg,
+    rgba(12, 20, 69, 1) 0%,
+    rgba(56, 40, 92, 1) 35%,
+    rgba(76, 64, 142, 1) 100%
+  );
+  overflow: hidden;
 }
 
 .color_1::before {
@@ -70,6 +76,7 @@ background: linear-gradient(90deg, rgba(12,20,69,1) 0%, rgba(56,40,92,1) 35%, rg
   display: inline-block;
   height: 0;
   position: absolute;
+  z-index: 999;
 }
 
 .pine_1::before,
@@ -85,7 +92,7 @@ background: linear-gradient(90deg, rgba(12,20,69,1) 0%, rgba(56,40,92,1) 35%, rg
   display: inline-block;
   width: 10px;
   height: 3px;
-  background-color: #567D30;
+  background-color: #567d30;
   border-radius: 50%;
 }
 
@@ -156,9 +163,8 @@ background: linear-gradient(90deg, rgba(12,20,69,1) 0%, rgba(56,40,92,1) 35%, rg
   padding: 10px 0;
   color: white;
   text-transform: uppercase;
-  font-family: 'Langar', cursive;
+  font-family: "Langar", cursive;
   font-size: 24px;
-
 }
 
 /* Star */
@@ -313,27 +319,59 @@ background: linear-gradient(90deg, rgba(12,20,69,1) 0%, rgba(56,40,92,1) 35%, rg
 }
 
 .pentagon-top-color-1::before {
-  border-color: transparent transparent #fc0000!important;
+  border-color: transparent transparent #fc0000 !important;
 }
 .pentagon-top-color-2::before {
-  border-color: transparent transparent #40ff00!important;
+  border-color: transparent transparent #40ff00 !important;
 }
 .pentagon-top-color-3::before {
-  border-color: transparent transparent #002fff!important;
+  border-color: transparent transparent #002fff !important;
 }
 .pentagon-top-color-4::before {
-  border-color: transparent transparent #b700ff!important;
+  border-color: transparent transparent #b700ff !important;
 }
 
 .pentagon-bottom-color-1 {
-  border-color: #fc0000 transparent!important;
+  border-color: #fc0000 transparent !important;
 }
 .pentagon-bottom-color-2 {
-  border-color: #40ff00 transparent!important;
+  border-color: #40ff00 transparent !important;
 }
 .pentagon-bottom-color-3 {
-  border-color: #002fff transparent!important;
+  border-color: #002fff transparent !important;
 }
 .pentagon-bottom-color-4 {
-  border-color: #b700ff transparent!important;
+  border-color: #b700ff transparent !important;
+}
+
+/* Fires */
+
+span.fires {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  position: absolute;
+  /* bottom: 0; */
+  left: 5%;
+  /* animation-name: fireShot; */
+  /* animation-duration: 500ms; */
+  /* bottom: 70%; */
+}
+
+
+.hide-fire {
+  animation-name: hideFire;
+  animation-duration: 2000ms;
+  opacity: 0;
+
+}
+
+@keyframes hideFire{
+  0% {
+    opacity: 1;
+  }
+  100%  {
+    opacity: 0;
+  }
 }

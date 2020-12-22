@@ -141,7 +141,7 @@ function getTimeBeforeChristmas() {
 function createmanyStars() {
     let body = document.querySelector('body');
     body.style.position = 'relative';
-    for(let i = 0; i < 500; i++) {
+    for (let i = 0; i < 500; i++) {
         let star = document.createElement('span');
         star.style.position = 'absolute';
         star.style.display = 'inline-block';
@@ -150,10 +150,88 @@ function createmanyStars() {
         star.style.height = '1px';
         let leftPosition = randomIntFromInterval(1, 99);
         let rightPosition = randomIntFromInterval(1, 99);
-        star.style.top = leftPosition +'%'
+        star.style.top = leftPosition + '%'
         star.style.left = rightPosition + '%'
         body.appendChild(star)
     }
+}
+
+function createFireElements() {
+    let fires = {};
+    let container = document.querySelector('.container')
+
+    for (let i = 1; i <= 72; i++) {
+        fires[i] = document.createElement('span');
+        fires[i].classList.add('fires');
+        let rand = randomIntFromInterval(1, 4);
+        fires[i].style.backgroundColor = colors[rand];
+        container.appendChild(fires[i])
+    }
+    return fires;
+}
+
+function fireworks() {
+    let fires = createFireElements()
+
+    let maxBottomPosition = randomIntFromInterval(60, 80);
+    let bottomPosition = 0;
+    let leftPosition = randomIntFromInterval(1, 50);
+    let delay = 10;
+    let shotInterval = setInterval(() => {
+        bottomPosition++;
+        delay += 1;
+
+        for (let i in fires) {
+            fires[i].style.left = leftPosition + '%';
+            fires[i].style.bottom = bottomPosition + '%';
+        }
+
+        if (bottomPosition >= maxBottomPosition) {
+            clearInterval(shotInterval);
+            fireWorkBoom(fires);
+        }
+
+    }, delay)
+}
+
+
+function fireWorkBoom(fires) {
+    //(x + r cos(2kπ/n), y + r sin(2kπ/n))
+
+    let px = document.querySelector('.fires').offsetLeft,
+     py = document.querySelector('.fires').offsetTop;
+
+    let x = px - 5, y = py + 300;
+    let r = 1;
+
+    console.log(x, y)
+
+    for(let a = 0; a<25; a++) {
+
+        for(let i in fires) {
+            x = x + r * Math.cos((2*(i*Math.PI)/72))
+            y = y + r * Math.sin((2*(i*Math.PI)/72))
+            fires[i].style.left = x + 'px';
+            fires[i].style.bottom = y + 'px';
+            hide(fires[i], 100*a)
+        }
+        r+=0.5;
+        y-=5.5;
+        if(a < 24) {
+        fires = createFireElements()
+
+        }
+    }
+
+}
+
+function hide(el, d){
+    setTimeout(() => {
+        el.classList.add('hide-fire');
+        setTimeout(() => {
+            el.remove();
+        }, 2000)
+    }, d)
 }
 
 !function main() {
@@ -161,5 +239,9 @@ function createmanyStars() {
     treeLightning();
     getTimeBeforeChristmas();
     starLightning();
-    createmanyStars()
+    createmanyStars();
+    fireworks()
+    setInterval(() => {
+            fireworks()
+    }, 7000)
 }();
