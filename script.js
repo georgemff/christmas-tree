@@ -116,7 +116,7 @@ function randomIntFromInterval(min, max) {
 function getTimeBeforeChristmas() {
     setInterval(() => {
         let date1 = new Date();
-        let date2 = new Date('Thu Dec 31 2020 23:59:59 GMT+0400 (Georgia Standard Time)');
+        let date2 = new Date(new Date().getFullYear(), 11, 31, 23, 59, 59);
         let diffTime = Math.abs(date2 - date1);
 
         let total_seconds = Math.floor(diffTime / 1000);
@@ -203,8 +203,6 @@ function fireWorkBoom(fires) {
 
     let x = px - 5, y = py + 300;
     let r = 1;
-
-    console.log(x, y)
 
     for(let a = 0; a<25; a++) {
 
